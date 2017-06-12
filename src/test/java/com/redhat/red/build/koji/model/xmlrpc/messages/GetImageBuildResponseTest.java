@@ -38,7 +38,7 @@ public class GetImageBuildResponseTest
     {
         EventStreamParserImpl eventParser = new EventStreamParserImpl();
 
-        GetImageBuildResponse response = new GetImageBuildResponse(new KojiImageBuildInfo(564910));
+        GetImageBuildResponse response = new GetImageBuildResponse( new KojiImageBuildInfo( 564910 ) );
 
         bindery.render( eventParser, response );
 
@@ -57,7 +57,7 @@ public class GetImageBuildResponseTest
         EventStreamParserImpl eventParser = new EventStreamParserImpl();
 
         KojiImageBuildInfo info = new KojiImageBuildInfo();
-        info.setBuildId(564910);
+        info.setBuildId( 564910 );
 
         bindery.render( eventParser, new GetImageBuildResponse( info ) );
 

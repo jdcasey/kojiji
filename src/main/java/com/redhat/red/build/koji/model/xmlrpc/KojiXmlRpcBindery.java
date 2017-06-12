@@ -42,6 +42,8 @@ import com.redhat.red.build.koji.model.xmlrpc.messages.GetMavenBuildResponse;
 import com.redhat.red.build.koji.model.xmlrpc.messages.GetPackageIdRequest;
 import com.redhat.red.build.koji.model.xmlrpc.messages.GetTagIdRequest;
 import com.redhat.red.build.koji.model.xmlrpc.messages.GetTaskRequest;
+import com.redhat.red.build.koji.model.xmlrpc.messages.GetTaskRequestRequest;
+import com.redhat.red.build.koji.model.xmlrpc.messages.GetTaskRequestResponse;
 import com.redhat.red.build.koji.model.xmlrpc.messages.GetTaskResponse;
 import com.redhat.red.build.koji.model.xmlrpc.messages.GetWinBuildRequest;
 import com.redhat.red.build.koji.model.xmlrpc.messages.GetWinBuildResponse;
@@ -130,6 +132,8 @@ public class KojiXmlRpcBindery
                 GetPackageIdRequest.class,
                 GetTagIdRequest.class,
                 GetTaskRequest.class,
+                GetTaskRequestRequest.class,
+                GetTaskRequestResponse.class,
                 GetTaskResponse.class,
                 GetWinBuildRequest.class,
                 GetWinBuildResponse.class,

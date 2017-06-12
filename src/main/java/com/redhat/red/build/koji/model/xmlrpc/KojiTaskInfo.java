@@ -16,7 +16,6 @@
 package com.redhat.red.build.koji.model.xmlrpc;
 
 import com.redhat.red.build.koji.model.util.TimestampValueBinder;
-import org.commonjava.rwx.binding.anno.Contains;
 import org.commonjava.rwx.binding.anno.Converter;
 import org.commonjava.rwx.binding.anno.DataKey;
 import org.commonjava.rwx.binding.anno.StructPart;
@@ -72,6 +71,9 @@ public class KojiTaskInfo
 
     @DataKey( "arch" )
     private String arch;
+
+    @DataKey( "request" )
+    private List<Object> request;
 
     public int getTaskId()
     {
@@ -211,5 +213,15 @@ public class KojiTaskInfo
     public void setArch( String arch )
     {
         this.arch = arch;
+    }
+
+    public List<Object> getRequest()
+    {
+        return request;
+    }
+
+    public void setRequest( List<Object> request )
+    {
+        this.request = request;
     }
 }

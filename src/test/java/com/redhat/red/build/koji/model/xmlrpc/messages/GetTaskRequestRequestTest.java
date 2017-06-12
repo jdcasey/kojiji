@@ -27,9 +27,7 @@ import org.commonjava.rwx.impl.estream.EventStreamGeneratorImpl;
 import org.commonjava.rwx.impl.estream.EventStreamParserImpl;
 import org.junit.Test;
 
-import com.redhat.red.build.koji.model.xmlrpc.KojiIdOrName;
-
-public class GetImageBuildRequestTest
+public class GetTaskRequestRequestTest
     extends AbstractKojiMessageTest
 {
 
@@ -38,12 +36,12 @@ public class GetImageBuildRequestTest
             throws Exception
     {
         EventStreamParserImpl eventParser = new EventStreamParserImpl();
-        bindery.render( eventParser, new GetImageBuildRequest( 564910 ) );
+        bindery.render( eventParser, new GetTaskRequestRequest( 506045 ) );
 
         List<Event<?>> objectEvents = eventParser.getEvents();
         eventParser.clearEvents();
 
-        List<Event<?>> capturedEvents = parseEvents( "getImageBuild-request.xml" );
+        List<Event<?>> capturedEvents = parseEvents( "getTaskRequest-request.xml" );
 
         assertEquals( objectEvents, capturedEvents );
     }
@@ -53,22 +51,22 @@ public class GetImageBuildRequestTest
             throws Exception
     {
         EventStreamParserImpl eventParser = new EventStreamParserImpl();
-        bindery.render( eventParser, new GetImageBuildRequest( new KojiIdOrName( 564910 ) ) );
+        bindery.render( eventParser, new GetTaskRequestRequest( 506045 ) );
 
         List<Event<?>> objectEvents = eventParser.getEvents();
         EventStreamGeneratorImpl generator = new EventStreamGeneratorImpl( objectEvents );
 
-        GetImageBuildRequest parsed = bindery.parse( generator, GetImageBuildRequest.class );
+        GetTaskRequestRequest parsed = bindery.parse( generator, GetTaskRequestRequest.class );
         assertNotNull( parsed );
 
-        assertThat( parsed.getBuildIdOrName().getId(), equalTo( 564910 ) );
+        assertThat( parsed.getTaskId(), equalTo( 506045 ) );
     }
 
     @Test
     public void renderXML()
             throws Exception
     {
-        String xml = bindery.renderString( new GetImageBuildRequest( 564910 ) );
+        String xml = bindery.renderString( new GetTaskRequestRequest( 506045 ) );
         System.out.println( xml );
     }
 }
