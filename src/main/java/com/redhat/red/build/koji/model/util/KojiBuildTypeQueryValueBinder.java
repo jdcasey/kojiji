@@ -17,6 +17,7 @@ package com.redhat.red.build.koji.model.util;
 
 import com.redhat.red.build.koji.model.xmlrpc.KojiBuildTypeQuery;
 
+import org.commonjava.rwx.binding.internal.xbr.XBRBindingContext;
 import org.commonjava.rwx.binding.mapping.Mapping;
 import org.commonjava.rwx.binding.spi.Binder;
 import org.commonjava.rwx.binding.spi.BindingContext;
@@ -33,7 +34,7 @@ import java.util.Map;
 public class KojiBuildTypeQueryValueBinder
         extends CustomValueBinder
 {
-    public KojiBuildTypeQueryValueBinder( Binder parent, Class<?> type, BindingContext context )
+    public KojiBuildTypeQueryValueBinder( Binder parent, Class<?> type, XBRBindingContext context )
     {
         super( parent, type, context );
     }

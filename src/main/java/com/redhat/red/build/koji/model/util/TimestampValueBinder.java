@@ -16,6 +16,7 @@
 package com.redhat.red.build.koji.model.util;
 
 import com.redhat.red.build.koji.model.xmlrpc.KojiIdOrName;
+import org.commonjava.rwx.binding.internal.xbr.XBRBindingContext;
 import org.commonjava.rwx.binding.mapping.Mapping;
 import org.commonjava.rwx.binding.spi.Binder;
 import org.commonjava.rwx.binding.spi.BindingContext;
@@ -47,7 +48,7 @@ public class TimestampValueBinder
     private static final List<String> TS_FORMATS =
             Collections.unmodifiableList( Arrays.asList( "yyyy-MM-dd hh:mm:ss ZZZ", "yyyy-MM-dd hh:mm:ss" ) );
 
-    public TimestampValueBinder( Binder parent, Class<?> type, BindingContext context )
+    public TimestampValueBinder( Binder parent, Class<?> type, XBRBindingContext context )
     {
         super( parent, type, context );
     }

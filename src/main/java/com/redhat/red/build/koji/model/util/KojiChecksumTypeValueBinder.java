@@ -15,6 +15,7 @@
  */
 package com.redhat.red.build.koji.model.util;
 
+import org.commonjava.rwx.binding.internal.xbr.XBRBindingContext;
 import org.commonjava.rwx.binding.mapping.Mapping;
 import org.commonjava.rwx.binding.spi.Binder;
 import org.commonjava.rwx.binding.spi.BindingContext;
@@ -32,7 +33,7 @@ import com.redhat.red.build.koji.model.xmlrpc.KojiChecksumType;
 public class KojiChecksumTypeValueBinder extends CustomValueBinder
 {
 
-    public KojiChecksumTypeValueBinder( Binder parent, Class<?> type, BindingContext context )
+    public KojiChecksumTypeValueBinder( Binder parent, Class<?> type, XBRBindingContext context )
     {
         super( parent, type, context );
     }

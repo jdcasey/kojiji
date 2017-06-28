@@ -16,6 +16,7 @@
 package com.redhat.red.build.koji.model.xmlrpc.messages;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
@@ -31,6 +32,8 @@ import org.commonjava.rwx.impl.estream.EventStreamParserImpl;
 import org.junit.Test;
 
 import com.redhat.red.build.koji.model.xmlrpc.KojiTaskRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class GetTaskRequestResponseTest
     extends AbstractKojiMessageTest
@@ -86,6 +89,65 @@ public class GetTaskRequestResponseTest
         List<Event<?>> capturedEvents = parseEvents( "getTaskRequest-response.xml" );
 
         assertEquals( objectEvents, capturedEvents );
+    }
+
+    @Test
+    public void verify_FromCapture_PropertiesAndProfiles()
+            throws Exception
+    {
+        String path = "getTaskRequest-response-propertiesAndProfiles.xml";
+        GetTaskRequestResponse parsed = parseAs( path, GetTaskRequestResponse.class );
+
+        KojiTaskRequest parsedRequest = parsed.getTaskRequest();
+        List<Object> rawRequest = parsedRequest.getRequest();
+
+        assertThat( rawRequest.size(), equalTo( 3 ) );
+
+        assertThat( rawRequest.get( 0 ), equalTo( "git://git.foo.com/myproj.git#aabbccddeeff001122334455" ) );
+        assertThat( rawRequest.get( 1 ), equalTo( "my-tag" ) );
+
+        Map<String, Object> map = (Map<String, Object>) rawRequest.get( 2 );
+
+        assertThat( map.size(), equalTo( 2 ) );
+
+        Map<String, Object> properties = (Map<String, Object>) map.get( "properties" );
+
+        assertThat( properties.containsKey( "skipTests" ), equalTo( true ) );
+        assertThat( properties.get( "version.incremental.suffix" ), equalTo( "build" ) );
+
+        List<Object> profiles = (List<Object>) map.get( "profiles" );
+        assertThat( profiles.size(), equalTo( 1 ) );
+        assertThat( profiles.get( 0 ), equalTo( "release" ) );
+    }
+
+    @Test
+    public void verify_FromCapture_PropertiesAndGoals()
+            throws Exception
+    {
+        String path = "getTaskRequest-response-propertiesAndGoals.xml";
+        GetTaskRequestResponse parsed = parseAs( path, GetTaskRequestResponse.class );
+
+        KojiTaskRequest parsedRequest = parsed.getTaskRequest();
+        List<Object> rawRequest = parsedRequest.getRequest();
+
+        assertThat( rawRequest.size(), equalTo( 3 ) );
+
+        assertThat( rawRequest.get( 0 ), equalTo( "git://git.foo.com/myproj.git#aabbccddeeff001122334455" ) );
+        assertThat( rawRequest.get( 1 ), equalTo( "my-tag" ) );
+
+        Map<String, Object> map = (Map<String, Object>) rawRequest.get( 2 );
+        assertThat( map.size(), equalTo( 2 ) );
+
+        List<String> goals = (List<String>) map.get( "goals" );
+        assertThat( goals.size(), equalTo( 2 ) );
+        assertThat( goals.get( 0 ), equalTo( "install" ) );
+        assertThat( goals.get( 1 ), equalTo( "javadoc:aggregate-jar" ) );
+
+        Map<String, Object> properties = (Map<String, Object>) map.get( "properties" );
+        assertThat( properties, notNullValue() );
+        assertThat( properties.containsKey( "skipTests" ), equalTo( true ) );
+        assertThat( properties.containsKey( "performRelease" ), equalTo( true ) );
+        assertThat( properties.get( "version.incremental.suffix" ), equalTo( "build" ) );
     }
 
     @Test

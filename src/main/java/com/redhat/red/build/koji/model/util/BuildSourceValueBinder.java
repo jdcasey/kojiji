@@ -17,6 +17,7 @@ package com.redhat.red.build.koji.model.util;
 
 import com.redhat.red.build.koji.model.json.BuildSource;
 import com.redhat.red.build.koji.model.json.util.KojiJsonException;
+import org.commonjava.rwx.binding.internal.xbr.XBRBindingContext;
 import org.commonjava.rwx.binding.mapping.Mapping;
 import org.commonjava.rwx.binding.spi.Binder;
 import org.commonjava.rwx.binding.spi.BindingContext;
@@ -39,7 +40,7 @@ import static org.apache.commons.lang.StringUtils.isEmpty;
 public class BuildSourceValueBinder
         extends CustomValueBinder
 {
-    public BuildSourceValueBinder( Binder parent, Class<?> type, BindingContext context )
+    public BuildSourceValueBinder( Binder parent, Class<?> type, XBRBindingContext context )
     {
         super( parent, type, context );
     }

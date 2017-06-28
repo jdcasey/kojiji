@@ -17,12 +17,15 @@ package com.redhat.red.build.koji.model.xmlrpc.messages;
 
 import org.apache.commons.io.IOUtils;
 import org.commonjava.rwx.estream.model.Event;
+import org.commonjava.rwx.impl.estream.EventStreamGeneratorImpl;
 import org.commonjava.rwx.impl.estream.EventStreamParserImpl;
 import org.commonjava.rwx.impl.stax.StaxParser;
 import com.redhat.red.build.koji.model.xmlrpc.KojiXmlRpcBindery;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 import java.util.List;
@@ -90,6 +93,23 @@ public class AbstractKojiMessageTest
         finally
         {
             eventParser.clearEvents();
+        }
+    }
+
+    protected <T> T parseAs( String resourceFile, Class<T> type )
+            throws Exception
+    {
+        String resource = MESSAGES_BASE + resourceFile;
+        try(InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream( resource ))
+        {
+            if ( is == null )
+            {
+                Assert.fail( "Cannot find message XML file on classpath: " + resource );
+            }
+
+            Logger logger = LoggerFactory.getLogger( getClass() );
+            logger.trace( "Parsing via: {}", bindery );
+            return bindery.parse( is, type );
         }
     }
 

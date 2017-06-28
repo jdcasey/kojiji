@@ -17,6 +17,7 @@ package com.redhat.red.build.koji.model.util;
 
 import com.redhat.red.build.koji.model.json.FileBuildComponent;
 import com.redhat.red.build.koji.model.json.RPMBuildComponent;
+import org.commonjava.rwx.binding.internal.xbr.XBRBindingContext;
 import org.commonjava.rwx.binding.mapping.Mapping;
 import org.commonjava.rwx.binding.spi.Binder;
 import org.commonjava.rwx.binding.spi.BindingContext;
@@ -59,7 +60,7 @@ import static org.commonjava.rwx.vocab.ValueType.STRING;
 public class BuildComponentValueBinder
         extends CustomValueBinder
 {
-    public BuildComponentValueBinder( Binder parent, Class<?> type, BindingContext context )
+    public BuildComponentValueBinder( Binder parent, Class<?> type, XBRBindingContext context )
     {
         super( parent, type, context );
     }

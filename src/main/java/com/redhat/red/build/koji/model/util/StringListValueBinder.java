@@ -16,6 +16,7 @@
 package com.redhat.red.build.koji.model.util;
 
 import org.apache.commons.lang.StringUtils;
+import org.commonjava.rwx.binding.internal.xbr.XBRBindingContext;
 import org.commonjava.rwx.binding.mapping.Mapping;
 import org.commonjava.rwx.binding.spi.Binder;
 import org.commonjava.rwx.binding.spi.BindingContext;
@@ -40,7 +41,7 @@ import static org.apache.commons.lang.StringUtils.join;
 public class StringListValueBinder
         extends CustomValueBinder
 {
-    public StringListValueBinder( Binder parent, Class<?> type, BindingContext context )
+    public StringListValueBinder( Binder parent, Class<?> type, XBRBindingContext context )
     {
         super( parent, type, context );
     }

@@ -15,6 +15,7 @@
  */
 package com.redhat.red.build.koji.model.util;
 
+import org.commonjava.rwx.binding.internal.xbr.XBRBindingContext;
 import org.commonjava.rwx.binding.mapping.Mapping;
 import org.commonjava.rwx.binding.spi.Binder;
 import org.commonjava.rwx.binding.spi.BindingContext;
@@ -38,7 +39,7 @@ import static com.redhat.red.build.koji.model.util.DateUtils.toUTC;
 public class TimestampIntValueBinder
         extends CustomValueBinder
 {
-    public TimestampIntValueBinder( Binder parent, Class<?> type, BindingContext context )
+    public TimestampIntValueBinder( Binder parent, Class<?> type, XBRBindingContext context )
     {
         super( parent, type, context );
     }

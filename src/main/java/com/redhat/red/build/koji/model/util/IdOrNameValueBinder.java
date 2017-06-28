@@ -16,6 +16,7 @@
 package com.redhat.red.build.koji.model.util;
 
 import com.redhat.red.build.koji.model.xmlrpc.KojiIdOrName;
+import org.commonjava.rwx.binding.internal.xbr.XBRBindingContext;
 import org.commonjava.rwx.binding.mapping.Mapping;
 import org.commonjava.rwx.binding.spi.Binder;
 import org.commonjava.rwx.binding.spi.BindingContext;
@@ -34,7 +35,7 @@ import java.util.Map;
 public class IdOrNameValueBinder
         extends CustomValueBinder
 {
-    public IdOrNameValueBinder( Binder parent, Class<?> type, BindingContext context )
+    public IdOrNameValueBinder( Binder parent, Class<?> type, XBRBindingContext context )
     {
         super( parent, type, context );
     }
